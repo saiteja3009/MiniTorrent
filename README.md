@@ -7,11 +7,12 @@ It is a group based file sharing system where users can share, download files fr
 
     Command to compile tracker : g++ tracker.cpp -o tracker -pthread
 
-    Command to compile client : g++ client.cpp -o client -pthread
+    Command to compile client : g++ client.cpp -o client -pthread -lcrypto
 
     Command to run tracker : ./tracker tracker_info.txt
 
-    Command to run client : ./client <IP>:<PORT> tracker_info.txt
+    Command to run client : ./client <IP>:<PORT> tracker_info.txt 
+    (port>1000 and ip- loopback addresses)
 
 Note : tracker_info.txt contains the ip, port details of all trackers
 
