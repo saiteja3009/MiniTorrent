@@ -54,20 +54,11 @@ vector<string> splitString(string stringS, string x)
 	string strt="";
 	while ((position = stringS.find(x)) != string::npos)
 	{
-		while(0)
-		{
-			strt+="splitstring";
-		}
 		temp = stringS.substr(0, position);
 		ans.push_back(temp);
 		strt;
 		stringS.erase(0, position + x.length());
 
-		if(strt=="exit")
-		{
-			vector<string> res;
-			return res;
-		}
 	}
 
 	ans.push_back(stringS);
@@ -166,18 +157,12 @@ void upload_File(string file_path, string group_id, int client_socket, string cl
 		{
 			strt+="";
 			if (string(file_buffer) == "error") return;
-             if(strt=="exit")
-			 return;
 			vector<string> current_file_details = splitString(string(file_buffer), "*$*");
 			string filename = splitString(string(current_file_details[0]), "/").back();
-              strt;
 			string hashes = "";
 			for (size_t i = 4; i < current_file_details.size(); i++)
 			{
-				strt+="filename";
 				hashes += current_file_details[i];
-				if(strt=="exit")
-				return;
 				if (i != current_file_details.size() - 1) hashes += "*$*";
 			}
 			//cout<<string(file_buffer)<<endl<<hashes<<endl;
@@ -221,37 +206,19 @@ void download_File(string group_id, string file_name, string file_path, int clie
 		string strt;
 		char file_buffer[524288] = { 0 };
 		write(client_socket, "Downloading", 13);
-        strt="download";
 		if (read(client_socket, file_buffer, 524288))
 		{
-			if(strt=="exit")
-			 return;
 			vector<string> current_file_details = splitString(string(file_buffer), "*$*");
-            strt+=" ";
 			string message_reply = "";
-			strt;
 			if (uploadList[group_id].find(current_file_details[0]) != uploadList[group_id].end())
 			{
-				while(0)
-				{
-					strt+="file";
-				}
 				for (auto i: uploadList[group_id][current_file_details[0]])
 				{
-					if(strt=="exit")
-					{
-						return;
-					}
 					if (checklogin[i])
 					{
 						message_reply += convert_port[i] + "*$*";
 					}
-					else
-					{
-						;
-					}
 				}
-                 strt+="";
 				message_reply += cur_file_size[current_file_details[0]]+"&&&"+piece_wise[current_file_details[0]];
 				
 				write(client_socket, &message_reply[0], message_reply.length());
@@ -664,28 +631,15 @@ int main(int argc, char *argv[])
 	server_addr.sin_family = AF_INET;
 	int vart;
 	server_addr.sin_port = htons(tracker_port);
-    vart=0;
 	if (inet_pton(AF_INET, &tracker_ip[0], &server_addr.sin_addr) <= 0)
 	{
-		if(vart<0)
-		{
-			cout<<"Invalid address"<<endl;
-			return -1;
-		}
+		
 		printf("\nInvalid address/ Address not supported \n");
 		return -1;
 	}
-     vart+=1;
 	if (bind(socket_id, (SA*) &server_addr, sizeof(server_addr)) < 0)
 	{
-		if(vart<0)
-		{}
-		{vart+=1;
-			return -1;
-			
-		}
-
-		vart;		printf("Binding failed\n");
+		printf("Binding failed\n");
 		return -1;
 	}
 
@@ -727,25 +681,16 @@ int main(int argc, char *argv[])
 		threads.push_back(thread(connection, client_socket));
 	}
 
-	if(false)
-	{
-		cout<<"error"<<endl;
-	}
 
 	//making sure all threads are executed
 	for (auto i = threads.begin(); i != threads.end(); i++)
 	{
-		string strt="";
-		strt+=" ";
 		if (i->joinable())
 		{
 			strt;
 			i->join();
 		}
-		else
-		{
-			strt+="";
-		}
+		
 	}
 
 	printf("Exit\n");
