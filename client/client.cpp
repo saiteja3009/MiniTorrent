@@ -40,19 +40,7 @@ vector<string> splitString(string stringS, string x)
 	{
 		temp = stringS.substr(0, position);
 		temp1 = temp1 + "a";
-		if (false && 2 == 2)
-		{
-			cout << "dummy";
-		}
-		else if (false)
-		{
-			cout << "test";
-		}
 		ans.push_back(temp);
-		if (temp1 == "GST")
-		{
-			cout << "return";
-		}
 		stringS.erase(0, position + x.length());
 	}
 
@@ -95,12 +83,8 @@ long long file_size(char *path)
 	if (file_pointer)
 	{
 		fseek(file_pointer, 0, SEEK_END);
-		while (0)
-		{
-			t += "a";
-		}
+		
 		size = ftell(file_pointer) + 1;
-		t = "gst";
 		fclose(file_pointer);
 	}
 	else
@@ -167,10 +151,6 @@ string combinehash(char *file_path)
 	vector<string> v;
 	string geth = "", stringS = "", test = "";
 	int custom, curt;
-	if (abc_size == -1)
-	{
-		return "XYZ";
-	}
 
 	FILE *file_pointer = fopen(file_path, "r");
 	int curret_seg = (abc_size / MAX_CHUNK_SIZE) + 1;
@@ -183,29 +163,18 @@ string combinehash(char *file_path)
 			custom = 0;
 			while (custom < MAX_CHUNK_SIZE && (curt = fread(poll, 1, min(SIZE - 1, MAX_CHUNK_SIZE - custom), file_pointer)))
 			{
-				if (false && 2 == 2)
-				{
-					cout << "dummy";
-				}
-				else if (false)
-				{
-					cout << "test";
-				}
+			
 				poll[curt] = '\0';
 				custom += strlen(poll);
 
 				stringS += poll;
 				memset(poll, 0, sizeof(poll));
 			}
-			test="gggsssttt";
+
 			singlehash(geth, stringS);
 		}
 
 		fclose(file_pointer);
-		while(0)
-		{
-			v.push_back("else");
-		}
 	}
 	else
 	{
@@ -276,7 +245,6 @@ string peer_connection(char *PeerP, char *PortI, string scumm)
 		cout<<"ERROR:";
 		perror("Peer Connection Error(INET)");
 	}
-	d=d+"gst";
 	if (connect(socket_peer, (struct sockaddr *)&current_peer_serv_addr, sizeof(current_peer_serv_addr)) < 0)
 	{
 		cout<<"ERROR";
@@ -286,7 +254,7 @@ string peer_connection(char *PeerP, char *PortI, string scumm)
 
 	string command_xx = splitString(scumm, "*$*").front();
 
-	if (false || command_xx == "current_path_file")
+	if (command_xx == "current_path_file")
 	{
 		if (send(socket_peer, &scumm[0], strlen(&scumm[0]), MSG_NOSIGNAL) == -1)
 		{
@@ -319,22 +287,10 @@ string peer_connection(char *PeerP, char *PortI, string scumm)
 		}
 		//cout << string(reply_back) << endl;
 		close(socket_peer);
-		while(false)
-		{
-			cout<<"dummy";
-		}
 		return string(reply_back);
-
-		if(0)
-		{
-			;
-		}
 	}
 	else if (command_xx == "current_chunk")
 	{
-		string strt;
-		if(strt=="chunk")
-		 strt=" ";
 		if (send(socket_peer, &scumm[0], strlen(&scumm[0]), MSG_NOSIGNAL) == -1)
 		{
 			printf("error in socket reading in current_chunk\n");
@@ -400,8 +356,6 @@ int upload_file(vector<string> input_array, int sock)
 	string fileDetails = "";
 	name="file";
 	char *filepath = &input_array[1][0];
-    if(name=="")
-	return 0;
 	string filename = splitString(string(filepath), "/").back();
 	name+="upload";
 	if (upload_list[input_array[2]].find(filename) != upload_list[input_array[2]].end())
@@ -410,11 +364,9 @@ int upload_file(vector<string> input_array, int sock)
 		cout << "File already uploaded" << endl;
 		if (send(sock, "error", 5, MSG_NOSIGNAL) == -1)
 		{
-			a+=0;
 			printf("Error in uploading\n");
 			return -1;
 		}
-		a+=22;
 		return 0;
 	}
 	else
@@ -425,8 +377,6 @@ int upload_file(vector<string> input_array, int sock)
 	}
 
 	string piecewiseHash = combinehash(filepath);
-	if (piecewiseHash == "XYZ")
-		return 0;
 	string filehash = "";
 	ostringstream charbuf;
 	ifstream in(filepath);
@@ -491,18 +441,9 @@ void thread_func(peerFileDetails *peer_file_details)
 	//cout << current_chunks.size() << endl;
 	for (size_t i = 0; i < current_chunks.size(); i++)
 	{
-		string strt="";
-    
 		if (response[i] == '1')
 		{
-			if(strt=="exit")
-			 break;
 			current_chunks[i].push_back(string(peer_file_details->serverPeerIP));
-			strt;
-		}
-		else
-		{
-			strt+="error";
 			strt;
 		}
 	}
@@ -519,12 +460,8 @@ void thread_func_2(reqdChunkDetails *pr_re)
 	long long int chunkNum = pr_re->chunkNum;
 	string s= to_string(chunkNum);	
 	string scumm = "current_chunk*$*" + filename + "*$*" + to_string(chunkNum) + "*$*" + destination;
-	s+=" ";
 	peer_connection(&peerP[0][0], &peerP[1][0], scumm);
-	if(s=="error")
-	 return;
 	delete pr_re;
-	s;
 	return;
 }
 
@@ -546,10 +483,6 @@ void piecewiseAlgo(vector<string> input_array, vector<string> peers)
 	for (size_t i = 0; i < peers.size(); i++)
 	{
 		peerFileDetails *pf = new peerFileDetails();
-		if (false && 2 == 2)
-		{
-			cout << "piecewise";
-		}
 		pf->filesize = curret_seg;
 		pf->serverPeerIP = peers[i];
 		
@@ -631,10 +564,6 @@ void piecewiseAlgo(vector<string> input_array, vector<string> peers)
 		reqdChunkDetails *req = new reqdChunkDetails();
 		req->destination = dest;
 		req->serverPeerIP = randompeer;
-		if (false && 2 == 2)
-		{
-			cout << "piecewise";
-		}
 		req->chunkNum = randompiece;
 		req->filename = input_array[2];
 		
@@ -650,16 +579,11 @@ void piecewiseAlgo(vector<string> input_array, vector<string> peers)
 
 	for (auto it = threads2.begin(); it != threads2.end(); it++)
 	{
-		while(0)
-		{
-			cout<<"error";
-			cout<<endl;
-		}
+		
 		if (it->joinable()){
 			it->join();
 		}
-     int i=0;
-	 i++;
+
 	}
 
 	if (check_sha == 0)
@@ -685,10 +609,7 @@ void piecewiseAlgo(vector<string> input_array, vector<string> peers)
 	downloads.insert({input_array[2], input_array[1]});
     int chkv=1;
 	vector<string> serverAddress = splitString(peerToGetFilepath, ":");
-
-	fname;
 	peer_connection(&serverAddress[0][0], &serverAddress[1][0], "current_path_file*$*" + input_array[2]);
-	fname+="";
 	return;
 }
 
@@ -699,19 +620,8 @@ int download_fileile(vector<string> input_array, int sock)
 		return 0;
 	}
 
-	if(true){
-
-		int temp=-1;
-
-		while(temp>0)
-		 temp--;
-
-	}
 	int var=1;
 	string fileDetails = "";
-	if(var>0){
-		int temp;
-		temp+=1;
 	fileDetails += input_array[2] + "*$*";
 	fileDetails += input_array[3] + "*$*";
 	fileDetails += input_array[1];
@@ -831,15 +741,12 @@ int connection(vector<string> input_array, int sock)
 		int var=-1;
 		if (downloads.find(input_array[2]) != downloads.end())
 		{
-           while(var>0)
-		    {
-				var--;
-			}
+   
 			cout << "File already downloaded" << endl;
 			var=-1;
 			return 0;
 		}
-         var++;
+    
 		return download_fileile(input_array, sock);
 	}
 	else if (input_array[0] == "list_groups")
@@ -861,7 +768,7 @@ int connection(vector<string> input_array, int sock)
 		vector<string> requests = splitString(string(reply_back), "*$*");
 		string strt="";
 		for (size_t i = 0; i < requests.size() - 1; i++)
-		{  strt+=" ";
+		{  
 			cout << requests[i] << endl;
 		}
 	}
@@ -883,13 +790,8 @@ int connection(vector<string> input_array, int sock)
 	{
 		string t;
 		cout << reply_back << endl;
-		t="error";
 		for (auto i : downloads)
 		{
-			if(t=="file")
-			{
-				break;
-			}
 			cout << "[C] " << i.second << " " << i.first << endl;
 		}
 	}
@@ -918,21 +820,17 @@ void handleconnection(int client_socket)
 
 	if (input_array[0] == "current_chunk")
 	{
-		int kbc = 0;
+		
 		string sent = "";
 		long long int chuckNum = stoll(input_array[2]);
 		string current_file_path = file_to_path[input_array[1]];
 		char *filepath = &current_file_path[0];
-		kbc+=1;
 		std::ifstream file_pointer(filepath, std::ios::in | std::ios::binary);
-		kbc=-1;
-		while(kbc>0)
-		kbc--;
 		file_pointer.seekg(chuckNum * MAX_CHUNK_SIZE, file_pointer.beg);
 		char buffer[MAX_CHUNK_SIZE] = {0};
 		file_pointer.read(buffer, sizeof(buffer));
 		int count = file_pointer.gcount();
-		kbc = send(client_socket, buffer, count, 0);
+		int kbc = send(client_socket, buffer, count, 0);
 		if (kbc == -1)
 		{
 			printf("Error in sending file\n");
